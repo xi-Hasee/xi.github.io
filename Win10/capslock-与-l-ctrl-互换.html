@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link rel="Stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="Stylesheet" type="text/css" href="/static/css/tango.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="alternate" type="application/atom+xml" href="atom.xml" title="Atom feed">
+    <title>CapsLock 与 L-Ctrl 互换 - WiKi</title>
+    <meta name="keywords" content="wiki, markdwon,"/>
+    <meta name="description" content="个人WiKi"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+
+  <body>
+    <div id="container">
+      
+<div id="header">
+  <div class="post-nav"><a href="/">Home</a>&nbsp;&#187;&nbsp;<a href="/#Win10">Win10</a>&nbsp;&#187;&nbsp;CapsLock 与 L-Ctrl 互换
+    <span class="updated">Updated&nbsp;
+      2017-03-06 12:54
+    </span></div>
+</div>
+<div class="clearfix"></div>
+
+<div class="page_title">CapsLock 与 L-Ctrl 互换</div>
+
+  <ol>
+<li>
+<p>方法一: 直接修改注册表.</p>
+<ul>
+<li><code>win=r</code>+<code>regedit</code>打开注册表.</li>
+<li><code>HKEY_LOCAL_MACHINE</code>--&gt;<code>System</code>--&gt;<code>CurrentControlSet</code>--&gt;<code>Control</code>-–&gt;<code>KeyBoard Layout</code>(不是Layouts).</li>
+<li>新建二进制值<code>New</code>--&gt;<code>Binary value</code>.</li>
+<li>重命名: <code>New Value #1</code>--&gt;<code>Scancode Map</code>.</li>
+<li><code>Scancode Map</code>--&gt;<code>Modify</code>.</li>
+<li>
+<p>输入:</p>
+<div class="hlcode"><pre><span class="mo">0000</span>  <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span>
+<span class="mo">000</span><span class="mi">8</span>  <span class="mo">03</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mi">1</span><span class="n">D</span> <span class="mo">00</span> <span class="mi">3</span><span class="n">A</span> <span class="mo">00</span>
+<span class="mo">0010</span>  <span class="mi">3</span><span class="n">A</span> <span class="mo">00</span> <span class="mi">1</span><span class="n">D</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span>
+<span class="mo">001</span><span class="mi">8</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>重启.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>方法二: 新建一个注册表文件, 然后导入.</p>
+<ul>
+<li>新建一个<code>caps-to-ctrl.reg</code>文件.</li>
+<li>
+<p>内容:</p>
+<div class="hlcode"><pre><span class="n">REGEDIT4</span>
+<span class="p">[</span><span class="n">HKEY_LOCAL_MACHINE</span><span class="err">\</span><span class="n">SYSTEM</span><span class="err">\</span><span class="n">CurrentControlSet</span><span class="err">\</span><span class="n">Control</span><span class="err">\</span><span class="n">Keyboard</span> <span class="n">Layout</span><span class="p">]</span>
+<span class="s">&quot;Scancode Map&quot;</span><span class="o">=</span><span class="n">hex</span><span class="o">:</span><span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">03</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mi">1</span><span class="n">D</span> <span class="mo">00</span> <span class="mi">3</span><span class="n">A</span> <span class="mo">00</span> <span class="mi">3</span><span class="n">A</span> <span class="mo">00</span> <span class="mi">1</span><span class="n">D</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span> <span class="mo">00</span>
+</pre></div>
+
+
+</li>
+<li>
+<p>双击导入注册表文件, 重启.</p>
+</li>
+</ul>
+</li>
+</ol>
+    </div>
+    <div id="footer">
+      <span>
+        <p>Copyright © 2017 TmllWGk=.
+        Powered by <a href="http://simiki.org/" target="_blank">Simiki</a>.</p>
+        <p>Site Generated 2017-03-08 19:52:54</p>
+      </span>
+    </div>
+  </body>
+</html>
